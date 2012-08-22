@@ -1,0 +1,77 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.perm.kate.api</groupId>
+    <artifactId>AndroidVkSdk</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>apklib</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.google.android</groupId>
+            <artifactId>android</artifactId>
+            <version>2.3.3</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <sourceDirectory>src</sourceDirectory>
+        <plugins>
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.7</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>2.3.1</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <!-- version 2.3 defaults to java 1.5, so no further configuration needed
+                    except encoding -->
+                <version>2.3</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                <artifactId>android-maven-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <test>
+                        <skip>true</skip>
+                    </test>
+                    <!-- <enableIntegrationTest>false</enableIntegrationTest>. -->
+                    <sdk>
+                        <!-- platform or api level (api level 8 = platform 2.2) -->
+                        <platform>14</platform>
+                    </sdk>
+                    <emulator>
+                        <!-- the name of the avd device to use for starting the emulator -->
+                        <avd>16</avd>
+                    </emulator>
+                    <deleteConflictingFiles>false</deleteConflictingFiles>
+                    <undeployBeforeDeploy>true</undeployBeforeDeploy>
+                    <!-- <androidManifestFile>${android.manifest.dest.file.dir}/AndroidManifest.xml</androidManifestFile> -->
+                    <dex>
+                        <jvmArguments>
+                            <jvmArgument>-Xms256m</jvmArgument>
+                            <jvmArgument>-Xmx512m</jvmArgument>
+                        </jvmArguments>
+                    </dex>
+                </configuration>
+                <extensions>true</extensions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.5</version>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
